@@ -2,8 +2,6 @@
 
 from struct import unpack
 file = "Blocks"
-#rudimentary file selection system, put in your file name to choose which file to convert.
-
 fileNew = file + "ASCII"
 f = open(file + ".stl","rb")
 
@@ -13,7 +11,7 @@ numfacets = unpack("<I",f.read(4))[0]
 
 
 with open(fileNew + ".stl", 'w') as fw:
-        fw.write("solid stock")
+        fw.write("solid stock" + "\n")
         for i in range(1,numfacets):
             a1 = unpack("<f",f.read(4))[0]
             a2 = unpack("<f",f.read(4))[0]
@@ -32,11 +30,11 @@ with open(fileNew + ".stl", 'w') as fw:
             v33 = unpack("<f",f.read(4))[0]
 
             attribs = unpack("<H",f.read(2))
-            fw.write("facet normal " + str(a1) + " " + str(a2) +" " + str(a3))
-            fw.write("  outer loop")
-            fw.write("    vertex " + str(v11) + " " + str(v12) + " " + str(v13))
-            fw.write("    vertex " + str(v21) + " " + str(v22) + " " + str(v33))
-            fw.write("    vertex " + str(v31) + " " + str(v32) + " " + str(v33))
-            fw.write("  endloop")
-            fw.write("endfacet")
-        fw.write("endsolid stock")
+            fw.write("facet normal " + str(a1) + " " + str(a2) +" " + str(a3) + "\n")
+            fw.write("  outer loop" + "\n")
+            fw.write("    vertex " + str(v11) + " " + str(v12) + " " + str(v13) + "\n")
+            fw.write("    vertex " + str(v21) + " " + str(v22) + " " + str(v33) + "\n")
+            fw.write("    vertex " + str(v31) + " " + str(v32) + " " + str(v33) + "\n")
+            fw.write("  endloop" + "\n")
+            fw.write("endfacet" + "\n")
+        fw.write("endsolid stock" + "\n")
